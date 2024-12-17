@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #circle {
+        height: 200px;
+        width: 200px;
+        border: 2px solid black;
+        border-radius: 50%;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    #button-container{
+        display: flex;
+        gap: 2rem;
+    }
+
+    .colorButton {
+        cursor: pointer;
+        padding: 5px 15px;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+    }
+
+    .colorButton.active {
+        color: #fff;
+        box-shadow: rgb(255, 255, 255) 0px 5px 15px;
+        border: 1px solid black;   
+    }
+</style>
+
+<body>
+    <div style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 2rem;
+        height: 95vh;
+        background-color: #666666;
+        ">
+        <div style="
+        border: 2px solid black;
+        padding: 2rem;
+        ">
+            <div id="circle"></div>
+        </div>
+        <div>
+            <div id="button-container">
+                <button class="colorButton" value="red" style="background-color: rgb(218, 152, 152);">Red</button>
+                <button class="colorButton" value="green" style="background-color: rgb(142, 196, 142);">Green</button>
+                <button class="colorButton" value="blue" style="background-color: rgb(140, 140, 185);">Blue</button>
+                <button class="colorButton" value="white" style="background-color: rgb(162, 151, 151);">Reset</button>
+            </div>
+        </div>
+        <input id="color" type="text">
+    </div>
+</body>
+<script>
+    const color = document.getElementById('color');
+    const circle = document.getElementById('circle');
+    const colorButton = document.getElementsByClassName('colorButton');
+    const actviebtn = document.getElementsByClassName('active');
+
+    for (let btn of colorButton) {
+        btn.addEventListener('click', (e) => {
+            circle.style.backgroundColor = btn.value;
+            if(actviebtn[0]) actviebtn[0].classList.remove('active');
+             e.target.className += ' active'
+        })
+    }
+
+    color.addEventListener('change', () => {
+        circle.style.backgroundColor = color.value;
+        color.value = ''
+    })
+</script>
+
+</html>
